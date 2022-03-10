@@ -12,6 +12,15 @@ function PlanetProvider({ children }) {
     value: 0,
   });
   const [filteredPlanets, setFilteredPlanets] = useState([]);
+  const [optionElements, setOptionElements] = useState(
+    [
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ],
+  );
 
   const fetchPlanets = async () => {
     const result = await fetchAPI();
@@ -28,9 +37,11 @@ function PlanetProvider({ children }) {
           nameFilter,
           numberFilter,
           filteredPlanets,
+          optionElements,
           setNameFilter,
           setNumberFilter,
           setFilteredPlanets,
+          setOptionElements,
         } }
       >
         {children}

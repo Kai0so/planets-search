@@ -7,9 +7,11 @@ function Table() {
     nameFilter,
     numberFilter,
     filteredPlanets,
+    optionElements,
     setNameFilter,
     setNumberFilter,
-    setFilteredPlanets } = useContext(PlanetContext);
+    setFilteredPlanets,
+    setOptionElements } = useContext(PlanetContext);
 
   const handleChange = ({ target: { id, value } }) => {
     if (id !== 'name') {
@@ -57,6 +59,7 @@ function Table() {
         console.log('oi');
       }
     }
+    setOptionElements(optionElements.filter((e) => e !== column));
     return planetFilter;
   };
 
@@ -74,11 +77,14 @@ function Table() {
         value={ numberFilter.column }
         onChange={ handleChange }
       >
-        <option>population</option>
-        <option>orbital_period</option>
-        <option>diameter</option>
-        <option>rotation_period</option>
-        <option>surface_water</option>
+        { optionElements.map((option, index) => (
+          <option
+            key={ index }
+            value={ option }
+          >
+            { option }
+          </option>
+        )) }
       </select>
       <select
         data-testid="comparison-filter"
