@@ -6,6 +6,12 @@ import fetchAPI from '../services/fetchAPI';
 function PlanetProvider({ children }) {
   const [data, setData] = useState([]);
   const [nameFilter, setNameFilter] = useState({ name: '' });
+  const [numberFilter, setNumberFilter] = useState({
+    column: 'population',
+    comparison: 'maior que',
+    value: 0,
+  });
+  const [filteredPlanets, setFilteredPlanets] = useState([]);
 
   const fetchPlanets = async () => {
     const result = await fetchAPI();
@@ -16,7 +22,17 @@ function PlanetProvider({ children }) {
 
   return (
     <main>
-      <PlanetContext.Provider value={ { data, nameFilter, setNameFilter } }>
+      <PlanetContext.Provider
+        value={ {
+          data,
+          nameFilter,
+          numberFilter,
+          filteredPlanets,
+          setNameFilter,
+          setNumberFilter,
+          setFilteredPlanets,
+        } }
+      >
         {children}
       </PlanetContext.Provider>
     </main>
