@@ -22,14 +22,40 @@ function Table() {
   const filterPlanets = () => {
     const { column, comparison, value } = numberFilter;
     let planetFilter = [];
-    if (comparison === 'maior que') {
-      planetFilter = data.filter((planet) => planet[column] > parseFloat(value));
-    }
-    if (comparison === 'menor que') {
-      planetFilter = data.filter((planet) => planet[column] < parseFloat(value));
-    }
-    if (comparison === 'igual a') {
-      planetFilter = data.filter((planet) => planet[column] === value);
+    if (filteredPlanets.length !== 0) {
+      switch (comparison) {
+      case 'maior que':
+        planetFilter = filteredPlanets
+          .filter((planet) => planet[column] > parseFloat(value));
+        break;
+      case 'menor que':
+        planetFilter = filteredPlanets
+          .filter((planet) => planet[column] < parseFloat(value));
+        break;
+      case 'igual a':
+        planetFilter = filteredPlanets
+          .filter((planet) => planet[column] === value);
+        break;
+      default:
+        console.log('oi');
+      }
+    } else {
+      switch (comparison) {
+      case 'maior que':
+        planetFilter = data
+          .filter((planet) => planet[column] > parseFloat(value));
+        break;
+      case 'menor que':
+        planetFilter = data
+          .filter((planet) => planet[column] < parseFloat(value));
+        break;
+      case 'igual a':
+        planetFilter = data
+          .filter((planet) => planet[column] === value);
+        break;
+      default:
+        console.log('oi');
+      }
     }
     return planetFilter;
   };
