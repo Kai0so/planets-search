@@ -5,6 +5,7 @@ import fetchAPI from '../services/fetchAPI';
 
 function PlanetProvider({ children }) {
   const [data, setData] = useState([]);
+  const [nameFilter, setNameFilter] = useState({ name: '' });
 
   const fetchPlanets = async () => {
     const result = await fetchAPI();
@@ -15,7 +16,7 @@ function PlanetProvider({ children }) {
 
   return (
     <main>
-      <PlanetContext.Provider value={ { data } }>
+      <PlanetContext.Provider value={ { data, nameFilter, setNameFilter } }>
         {children}
       </PlanetContext.Provider>
     </main>
@@ -23,7 +24,7 @@ function PlanetProvider({ children }) {
 }
 
 PlanetProvider.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.any).isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export default PlanetProvider;
